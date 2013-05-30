@@ -25,15 +25,16 @@ public class Schweinegrippe {
         double immunisierungsRate = 0.06;
 
         while (zeit < 30) {
+            Bevoelkerung bevoelkerungAktuell = listeBevoelkerung.get(zeit);
             double immunisierte 
-            = immunisierungsRate * listeBevoelkerung.get(zeit).getKranke();
+            = immunisierungsRate * bevoelkerungAktuell.getKranke();
             double infizierte 
-            = infektionsRate * listeBevoelkerung.get(zeit).getGesunde() 
-              * listeBevoelkerung.get(zeit).getKranke();
+            = infektionsRate * bevoelkerungAktuell.getGesunde() 
+              * bevoelkerungAktuell.getKranke();
             
-            double gesundeAktuell = listeBevoelkerung.get(zeit).getGesunde() - infizierte;
-            double krankeAktuell = listeBevoelkerung.get(zeit).getKranke() + infizierte - immunisierte;
-            double immuneAktuell = listeBevoelkerung.get(zeit).getImun() + immunisierte;
+            double gesundeAktuell = bevoelkerungAktuell.getGesunde() - infizierte;
+            double krankeAktuell = bevoelkerungAktuell.getKranke() + infizierte - immunisierte;
+            double immuneAktuell = bevoelkerungAktuell.getImun() + immunisierte;
             
             listeBevoelkerung.add(new Bevoelkerung(gesundeAktuell,krankeAktuell,immuneAktuell));
             
